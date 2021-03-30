@@ -8,7 +8,7 @@ namespace LogAnalyzer.Classes
 {
     public static class LogFileProcessor
     {
-        private static readonly NameValueCollection appSettings = ConfigurationManager.AppSettings;
+        private static readonly NameValueCollection AppSettings = ConfigurationManager.AppSettings;
 
         public static List<string> GetGroupedIpAddresses(string fileName)
         {
@@ -28,7 +28,7 @@ namespace LogAnalyzer.Classes
                         {
                             var splittedFieldsLine = line.Split(' ');
 
-                            columnIndex = Array.FindIndex(splittedFieldsLine, x => x == appSettings["columnName"]);
+                            columnIndex = Array.FindIndex(splittedFieldsLine, x => x == AppSettings["columnName"]);
 
                             columnTaken = true;
                         }

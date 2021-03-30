@@ -12,11 +12,11 @@ namespace LogAnalyzer
 {
     class Program
     {
-        private static readonly NameValueCollection appSettings = ConfigurationManager.AppSettings;
+        private static readonly NameValueCollection AppSettings = ConfigurationManager.AppSettings;
 
         static void Main(string[] args)
         {
-            var fileName = $"{appSettings["logFilesBaseFolder"]}/{appSettings["currentFileName"]}";
+            var fileName = $"{AppSettings["logFilesBaseFolder"]}/{AppSettings["currentFileName"]}";
             var resultList = new List<LogItem>();
             var tasks = new List<Task>();
 
@@ -56,7 +56,7 @@ namespace LogAnalyzer
 
                 Task task = Task.WhenAll(tasks);
 
-                ConsoleLogger.LogMessage(appSettings["pleaseWait"]);
+                ConsoleLogger.LogMessage(AppSettings["pleaseWait"]);
 
                 task.Wait();
 
@@ -69,7 +69,7 @@ namespace LogAnalyzer
                         ConsoleLogger.LogMessage(resultListItem.ToString());
                     }
 
-                    ConsoleLogger.LogMessage(appSettings["dnsSuccess"]);
+                    ConsoleLogger.LogMessage(AppSettings["dnsSuccess"]);
                 }
                 else
                 {

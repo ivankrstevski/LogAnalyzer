@@ -41,7 +41,6 @@ namespace LogAnalyzer.Classes
                     }
                 }
 
-
                 return clientAddresses;
             }
             catch (Exception)

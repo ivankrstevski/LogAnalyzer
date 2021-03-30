@@ -22,11 +22,17 @@ namespace LogAnalyzer
 
             try
             {
+                if (string.IsNullOrEmpty(fileName))
+                {
+                    ConsoleLogger.LogError();
+                    return;
+                }
+
                 var clientAddresses = LogFileProcessor.GetGroupedIpAddresses(fileName);
 
                 if (clientAddresses.Count == 0)
                 {
-                    ConsoleLogger.LogMessage(appSettings["error"]);
+                    ConsoleLogger.LogError();
                     return;
                 }
 
@@ -60,19 +66,19 @@ namespace LogAnalyzer
 
                     foreach (var resultListItem in resultList)
                     {
-                        ConsoleLogger.LogResultMessage(resultListItem, appSettings["noSuchHost"]);
+                        ConsoleLogger.LogMessage(resultListItem.ToString());
                     }
 
                     ConsoleLogger.LogMessage(appSettings["dnsSuccess"]);
                 }
                 else
                 {
-                    ConsoleLogger.LogMessage(appSettings["error"]);
+                    ConsoleLogger.LogError();
                 }
             }
             catch (Exception)
             {
-                ConsoleLogger.LogMessage(appSettings["error"]);
+                ConsoleLogger.LogError();
             }
 
             Console.ReadLine();
